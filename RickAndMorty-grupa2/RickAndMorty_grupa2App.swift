@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct RickAndMorty_grupa2App: App {
+    
+    let characters = (1...10000).map { "Character \(String($0))" }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            CharacterList(characters: characters)
         }
     }
 }

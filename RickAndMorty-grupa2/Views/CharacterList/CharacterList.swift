@@ -9,7 +9,44 @@ import SwiftUI
 
 struct CharacterList: View {
     
+    var characters: [String]
+    
     var body: some View {
-        Text("CharacterList")
+        bodyAsList
+//        bodyAsForEachInVStack
+//        bodyAsForEachInLazyVStack
     }
+    
+    var bodyAsList: some View {
+        List(characters, id: \.self) { character in
+            Text(character)
+        }
+    }
+    
+    var bodyAsForEachInVStack: some View {
+        ScrollView {
+            VStack {
+                ForEach(characters, id: \.self) { character in
+                    Text(character)
+                }
+            }
+        }
+    }
+    
+    var bodyAsForEachInLazyVStack: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(characters, id: \.self) { character in
+                    Text(character)
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    CharacterList(characters: [
+        "Rick",
+        "Morty",
+    ])
 }
