@@ -9,44 +9,23 @@ import SwiftUI
 
 struct CharacterList: View {
     
-    var characters: [String]
+    var characters: [Character]
     
     var body: some View {
         bodyAsList
-//        bodyAsForEachInVStack
-//        bodyAsForEachInLazyVStack
     }
     
     var bodyAsList: some View {
-        List(characters, id: \.self) { character in
-            Text(character)
-        }
-    }
-    
-    var bodyAsForEachInVStack: some View {
-        ScrollView {
-            VStack {
-                ForEach(characters, id: \.self) { character in
-                    Text(character)
-                }
-            }
-        }
-    }
-    
-    var bodyAsForEachInLazyVStack: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(characters, id: \.self) { character in
-                    Text(character)
-                }
-            }
+        List(characters) { character in
+            CharacterListRow(character: character)
         }
     }
 }
 
 #Preview {
-    CharacterList(characters: [
+    let characters = [
         "Rick",
         "Morty",
-    ])
+    ].map { Character(name: $0) }
+    CharacterList(characters: characters)
 }
