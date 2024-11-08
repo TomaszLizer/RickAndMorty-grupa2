@@ -16,10 +16,11 @@ struct CharacterListRow: View {
             spacing: 0
         ) {
             Text(character.name)
-            Text(character.gender.rawValue)
-                .font(.callout)
+                .font(.title)
+            let gender = character.gender
+            Image(systemName: gender.symbolName)
+                .foregroundStyle(gender.symbolColor)
         }
-        .font(.largeTitle)
     }
 }
 
@@ -27,7 +28,7 @@ struct CharacterListRow: View {
     CharacterListRow(
         character: .init(
             name: "Rick Sanchez",
-            gender: .male
+            gender: .genderless
         )
     )
 }
