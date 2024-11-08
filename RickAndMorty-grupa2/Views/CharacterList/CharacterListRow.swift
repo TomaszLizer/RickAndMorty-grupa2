@@ -11,6 +11,18 @@ struct CharacterListRow: View {
     var character: Character
     
     var body: some View {
-        Text(character.name)
+        VStack {
+            Text(character.name)
+            Text(character.gender.rawValue)
+        }
     }
+}
+
+#Preview(traits: .sizeThatFitsLayout) {
+    CharacterListRow(
+        character: .init(
+            name: "Rick Sanchez",
+            gender: .male
+        )
+    )
 }
