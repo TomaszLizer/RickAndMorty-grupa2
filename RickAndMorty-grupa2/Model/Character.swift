@@ -7,8 +7,11 @@
 
 import Foundation
 
-struct Character: Identifiable {
-    let id = UUID()
-    
-    var name: String
+struct CharacterResponse: Decodable {
+    let results: [Character]
+}
+
+struct Character: Decodable, Identifiable {
+    let id: Int
+    let name: String
 }
