@@ -16,11 +16,10 @@ struct CharacterListRow: View {
             spacing: 0
         ) {
             Text(character.name)
-                .background(Color.green)
             Text(character.gender.rawValue)
-                .background(Color.yellow)
+                .font(.callout)
         }
-        .background(Color.red)
+        .font(.largeTitle)
     }
 }
 

@@ -12,8 +12,6 @@ struct RickAndMorty_grupa2App: App {
     
     var body: some Scene {
         WindowGroup {
-            
-            CharacterList(characters: charactersMock)
-        }
+            CharacterList(characters: charactersMock)        }
     }
 }
