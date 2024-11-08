@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct CharacterResponse: Decodable {
     let results: [Character]
@@ -15,6 +16,7 @@ struct Character: Decodable, Identifiable {
     let id: Int
     let name: String
     let gender: Gender
+    let image: URL
 }
 
 extension Character {
@@ -22,12 +24,14 @@ extension Character {
     init(
         identifier: Int = UUID().hashValue,
         name: String = "Rick Sanchez",
-        gender: Gender = .unknown
+        gender: Gender = .unknown,
+        image: URL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
     ) {
         self.init(
             id: identifier,
             name: name,
-            gender: gender
+            gender: gender,
+            image: image
         )
     }
 }
