@@ -17,6 +17,21 @@ struct Character: Decodable, Identifiable {
     let gender: Gender
 }
 
+extension Character {
+    
+    init(
+        identifier: Int = UUID().hashValue,
+        name: String = "Rick Sanchez",
+        gender: Gender = .unknown
+    ) {
+        self.init(
+            id: identifier,
+            name: name,
+            gender: gender
+        )
+    }
+}
+
 enum Gender: String, Decodable{
     case male = "Male"
     case female = "Female"

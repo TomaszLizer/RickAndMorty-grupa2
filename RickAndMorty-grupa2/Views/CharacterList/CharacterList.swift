@@ -46,7 +46,7 @@ let charactersMock = [
     "Beth",
     "Jerry",
     "Bender",
-].map { Character(id: UUID().hashValue, name: $0) }
+].map { Character(name: $0) }
 
 #Preview {
     CharacterList(characters: charactersMock)
