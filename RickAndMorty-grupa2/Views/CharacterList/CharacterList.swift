@@ -22,10 +22,15 @@ struct CharacterList: View {
     }
 }
 
+let charactersMock = [
+    "Rick",
+    "Morty",
+    "Summer",
+    "Beth",
+    "Jerry",
+    "Bender",
+].map { Character(name: $0) }
+
 #Preview {
-    let characters = [
-        "Rick",
-        "Morty",
-    ].map { Character(name: $0) }
-    CharacterList(characters: characters)
+    CharacterList(characters: charactersMock)
 }
