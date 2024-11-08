@@ -14,4 +14,12 @@ struct CharacterResponse: Decodable {
 struct Character: Decodable, Identifiable {
     let id: Int
     let name: String
+    let gender: Gender
+}
+
+enum Gender: String, Decodable{
+    case male = "Male"
+    case female = "Female"
+    case unknown
+    case genderless = "Genderless"
 }
