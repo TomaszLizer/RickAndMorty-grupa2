@@ -36,9 +36,14 @@ struct CharacterListRow: View {
         ) {
             Text(character.name)
                 .font(.title)
-            let gender = character.gender
-            Image(systemName: gender.symbolName)
-                .foregroundStyle(gender.symbolColor)
+            HStack {
+                let gender = character.gender
+                Image(systemName: gender.symbolName)
+                    .foregroundStyle(gender.symbolColor)
+                Text(character.status.emoji)
+                Text(character.species)
+                Text(character.type)
+            }
         }
     }
 }

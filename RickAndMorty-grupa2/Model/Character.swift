@@ -16,7 +16,10 @@ struct Character: Decodable, Identifiable {
     let id: Int
     let name: String
     let gender: Gender
+    let status: Status
     let image: URL
+    let species: String
+    let type: String
 }
 
 extension Character {
@@ -25,13 +28,19 @@ extension Character {
         identifier: Int = UUID().hashValue,
         name: String = "Rick Sanchez",
         gender: Gender = .unknown,
+        status: Status = .unknown,
+        species: String = "Human",
+        type: String = "Scientist",
         image: URL = URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
     ) {
         self.init(
             id: identifier,
             name: name,
             gender: gender,
-            image: image
+            status: status,
+            image: image,
+            species: species,
+            type: type
         )
     }
 }
@@ -50,6 +59,7 @@ enum Gender: String, Decodable{
         case .genderless: return "Genderless"
         }
     }
+
     
     var symbolName: String {
         switch self {
@@ -69,3 +79,21 @@ enum Gender: String, Decodable{
         }
     }
 }
+
+enum Status: String, Decodable {
+    case alive = "Alive"
+    case dead = "Dead"
+    case unknown
+    
+    var emoji: String {
+        switch self {
+        case .alive:
+            return "👶"
+        case .dead:
+            return "💀"
+        case .unknown:
+            return "❓"
+        }
+    }
+}
+    
