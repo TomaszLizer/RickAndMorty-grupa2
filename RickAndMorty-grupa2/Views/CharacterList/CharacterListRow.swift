@@ -10,11 +10,11 @@ import SwiftUI
 struct CharacterListRow: View {
     var character: Character
     
-    @State private var image: UIImage?
+    @State private var image = UIImage(resource: .avatarPlaceholder)
     
     var body: some View {
         HStack(alignment: .center) {
-            Image(uiImage: image ?? UIImage())
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 100, height: 100)
@@ -31,10 +31,12 @@ struct CharacterListRow: View {
             }
         }
         .task {
-            let session = URLSession.shared
+            let session = URLSession(configuration: .ephemeral)
             do {
                 let (imageData, _) = try await session.data(from: character.image)
-                image = UIImage(data: imageData)
+                if let image = UIImage(data: imageData) {
+                    self.image = image
+                }
             } catch {
                 // handle error
             }
