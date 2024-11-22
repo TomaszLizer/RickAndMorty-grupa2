@@ -15,6 +15,10 @@ struct CharacterListRow: View {
     var body: some View {
         HStack(alignment: .center) {
             Image(uiImage: image ?? UIImage())
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 100, height: 100)
+                .clipped()
             VStack(
                 alignment: .leading,
                 spacing: 0
