@@ -13,33 +13,40 @@ struct CharacterListRow: View {
     @State private var image = UIImage(resource: .avatarPlaceholder)
     
     var body: some View {
-        HStack(alignment: .center) {
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 100, height: 100)
-                .clipped()
-            VStack(
-                alignment: .leading,
-                spacing: 0
-            ) {
-                Text(character.name)
-                    .font(.title)
-                let gender = character.gender
-                Image(systemName: gender.symbolName)
-                    .foregroundStyle(gender.symbolColor)
-            }
-        }
-        .task {
-            let session = URLSession(configuration: .ephemeral)
-            do {
-                let (imageData, _) = try await session.data(from: character.image)
-                if let image = UIImage(data: imageData) {
-                    self.image = image
+        details
+            .shadow(color: .white, radius: 5, x: 2, y: 2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .listRowBackground(avatar.blur(radius: 5))
+            .task {
+                let session = URLSession(configuration: .ephemeral)
+                do {
+                    let (imageData, _) = try await session.data(from: character.image)
+                    if let image = UIImage(data: imageData) {
+                        self.image = image
+                    }
+                } catch {
+                    // handle error
                 }
-            } catch {
-                // handle error
             }
+    }
+    
+    private var avatar: some View {
+        Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .clipped()
+    }
+    
+    private var details: some View {
+        VStack(
+            alignment: .leading,
+            spacing: 0
+        ) {
+            Text(character.name)
+                .font(.title)
+            let gender = character.gender
+            Image(systemName: gender.symbolName)
+                .foregroundStyle(gender.symbolColor)
         }
     }
 }
