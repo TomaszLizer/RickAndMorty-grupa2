@@ -10,9 +10,11 @@ import SwiftUI
 struct CharacterDetailsView: View {
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.isPresented) var isPresented
     var character: Character
     
     var body: some View {
+        let _ = print("CharacterDetailsView isPresented: \(isPresented)")
         VStack {
             Text(character.name)
                 .font(.title)

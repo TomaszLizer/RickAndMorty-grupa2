@@ -11,12 +11,15 @@ struct CharacterList: View {
     
     @State var characters: [Character]
     @State private var selectedCharacter: Character?
+    @Environment(\.isPresented) var isPresented
     
     var body: some View {
         bodyAsList
     }
     
+    @ViewBuilder
     var bodyAsList: some View {
+        let _ = print("CharacterList isPresented: \(isPresented)")
         List(characters) { character in
             CharacterListRow(character: character)
                 .contentShape(Rectangle())
