@@ -17,9 +17,7 @@ struct CharacterList: View {
     
     var bodyAsList: some View {
         List(characters) { character in
-            NavigationLink(value: character) {
-                CharacterListRow(character: character)
-            }
+            CharacterListRow(character: character)
         }
         .task {
             let characterUrlString = "https://rickandmortyapi.com/api/character"

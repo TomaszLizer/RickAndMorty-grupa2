@@ -12,10 +12,12 @@ struct CharacterListRow: View {
     var character: Character
     
     var body: some View {
-        details
-            .shadow(color: .white, radius: 5, x: 2, y: 2)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .listRowBackground(avatar.blur(radius: 5))
+        NavigationLink(value: character) {
+            details
+                .shadow(color: .white, radius: 5, x: 2, y: 2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .listRowBackground(avatar.blur(radius: 5))
     }
     
     private var avatar: some View {
