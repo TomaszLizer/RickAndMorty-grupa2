@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct CharacterDetailsView: View {
-
+    
+    @Environment(\.dismiss) var dismiss
     var character: Character
     
     var body: some View {
-        Text(character.name)
-            .font(.title)
-            .padding()
+        VStack {
+            Text(character.name)
+                .font(.title)
+                .padding()
+            
+            Button("Dismiss") {
+                dismiss()
+            }
+        }
     }
 }
